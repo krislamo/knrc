@@ -5,3 +5,6 @@ hello: 01-hello-world.c
 
 mathvars: 02-vars-and-math.c
 	gcc -o ./bin/02-mathvars 02-vars-and-math.c
+
+clean:
+	$(RM) ./bin/*-*
