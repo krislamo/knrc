@@ -1,0 +1,140 @@
+Notes on K&R C (2nd edition)
+----------------------------
+This repository contains examples and exercises from the
+https://en.wikipedia.org/wiki/The_C_Programming_Language[second edition K&R.]
+
+- Compiled using gcc version 8.3.0 on Debian 10 x86_64
+
+01-hello-world.c
+~~~~~~~~~~~~~~~~
+https://github.com/krislamo/knrc/commit/3e078042a42fed15b4de1b8ff31834f952ef5d81[(Diff)]
+https://github.com/krislamo/knrc/blob/3e078042a42fed15b4de1b8ff31834f952ef5d81/01-hello-world.c[(Source)]
+
+- A return type is explicitly set on the main function to clear a `gcc` warning in a slight deviation
+from the book.
+
+This example demonstrates an understanding of how to compile source code
+to machine code. It includes the `01-hello-world.c` source file and a `Makefile` that
+executes a `gcc` command to compile. In addition, a `.gitignore` file is included in
+the `./bin` directory to keep binary artifacts out of version control.
+
+Exercise 1-1: leave out parts
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+While these omissions are not directly included in the source, here are some examples of
+leaving parts out to generate compilation errors or warnings.
+
+Removing braces:
+
+----
+$ sed -i 's/[{}]//g' 01-hello-world.c
+$ make
+gcc -o ./bin/01-helloworld 01-hello-world.c
+01-hello-world.c: In function ‘main’:
+01-hello-world.c:5:2: error: expected declaration specifiers before ‘printf’
+  printf("hello, world\n");
+  ^~~~~~
+01-hello-world.c:6: error: expected ‘{’ at end of input
+
+
+make: *** [Makefile:4: hello] Error 1
+----
+
+Removing the semicolon:
+
+----
+$ sed -i 's/[;]//g' 01-hello-world.c
+$ make
+gcc -o ./bin/01-helloworld 01-hello-world.c
+01-hello-world.c: In function ‘main’:
+01-hello-world.c:5:26: error: expected ‘;’ before ‘}’ token
+  printf("hello, world\n")
+                          ^
+                          ;
+ }
+ ~
+make: *** [Makefile:4: hello] Error 1
+----
+
+Removing the include directive:
+
+----
+$ sed -i 's/#include.*//g' 01-hello-world.c
+$ make
+gcc -o ./bin/01-helloworld 01-hello-world.c
+01-hello-world.c: In function ‘main’:
+01-hello-world.c:5:2: warning: implicit declaration of function ‘printf’ [-Wimplicit-function-declaration]
+  printf("hello, world\n");
+  ^~~~~~
+01-hello-world.c:5:2: warning: incompatible implicit declaration of built-in function ‘printf’
+01-hello-world.c:5:2: note: include ‘<stdio.h>’ or provide a declaration of ‘printf’
+01-hello-world.c:1:1:
++#include <stdio.h>
+
+01-hello-world.c:5:2:
+  printf("hello, world\n");
+  ^~~~~~
+$ ./bin/01-helloworld
+hello, world
+$
+----
+
+Exercise 1-2: unknown escapes in printf
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Adding a `\k` into printf:
+
+----
+$ sed -i 's/\\n/\\k\\n/g' 01-hello-world.c
+$ make
+gcc -o ./bin/01-helloworld 01-hello-world.c
+01-hello-world.c: In function ‘main’:
+01-hello-world.c:5:9: warning: unknown escape sequence: '\k'
+  printf("hello, world\k\n");
+         ^~~~~~~~~~~~~~~~~~
+$ ./bin/01-helloworld
+hello, worldk
+$
+----
+
+02-vars-and-math.c
+~~~~~~~~~~~~~~~~~~
+https://github.com/krislamo/knrc/commit/9a193d84f112aa2bdfccc6c5137ce95aeccb1ead[(Diff)]
+https://github.com/krislamo/knrc/blob/9a193d84f112aa2bdfccc6c5137ce95aeccb1ead/02-vars-and-math.c[(Source)]
+
+This example incorporates comments, declaring variables, variable assignments, the
+while loop, and displaying arithmetic results into stdout.
+
+Higher precision
+^^^^^^^^^^^^^^^^^
+https://github.com/krislamo/knrc/commit/e7e2367bd7342302de7befacd90761671ebfe0bf[(Diff)]
+https://github.com/krislamo/knrc/blob/e7e2367bd7342302de7befacd90761671ebfe0bf/02-vars-and-math.c[(Source)]
+
+After typing out the second program's source, I instantly noticed a lack of floating-point
+numbers (from previous knowledge). So, impatiently, I came up with a solution for a cleaner
+and higher precision conversion table before seeing the book's answer. This slight change
+involved changing the variables' type to `float` and changing `%d` to `%g` in printf.
+
+Match textbook formatting
+^^^^^^^^^^^^^^^^^^^^^^^^^
+https://github.com/krislamo/knrc/commit/0d48636cdcdd5bc47e30fa6de21a1b8dcab7ec32[(Diff)]
+https://github.com/krislamo/knrc/blob/0d48636cdcdd5bc47e30fa6de21a1b8dcab7ec32/02-vars-and-math.c[(Source)]
+
+Conform to the textbook example, using better formatting and floating-point numbers
+throughout the equation.
+
+The for loop
+^^^^^^^^^^^^
+https://github.com/krislamo/knrc/commit/8ba629852ea914d74a28d0410e8a14aaf9724981[(Diff)]
+https://github.com/krislamo/knrc/blob/8ba629852ea914d74a28d0410e8a14aaf9724981/02-vars-and-math.c[(Source)]
+
+- I skipped over exercises 1-3 and 1-4 into the for loop in a slip-up
+
+Here we simplify the code into a for loop, removing all but one variable.
+
+Exercise 1-3: print a heading
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+https://github.com/krislamo/knrc/commit/0893987235ce02329c87ea000fb97eb0688bea54[(Diff)]
+https://github.com/krislamo/knrc/blob/0893987235ce02329c87ea000fb97eb0688bea54/02-vars-and-math.c[(Source)]
+
+I add a heading above the table with an additional printf statement and made a slight adjustment in
+the original printf to align it better.
