@@ -138,3 +138,10 @@ https://github.com/krislamo/knrc/blob/0893987235ce02329c87ea000fb97eb0688bea54/0
 
 I add a heading above the table with an additional printf statement and made a slight adjustment in
 the original printf to align it better.
+
+Exercise 1-4. print Celsius to Fahrenheit table
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+https://github.com/krislamo/knrc/commit/93126a8207ba83e3712bbab7b1e54548761a5fa1[(Diff)]
+https://github.com/krislamo/knrc/blob/93126a8207ba83e3712bbab7b1e54548761a5fa1/03-celsius-to-fahrenheit.c[(Source)]
+
+This is a simple little solution for a Celsius to Fahrenheit table.
