@@ -1,4 +1,4 @@
-all: hello mathvars c2f input
+all: hello mathvars c2f input count
 
 hello: 01-hello-world.c
 	gcc -o ./bin/01-helloworld 01-hello-world.c
@@ -11,6 +11,9 @@ c2f: 03-celsius-to-fahrenheit.c
 
 input: 04-file-copying.c
 	gcc -o ./bin/04-input 04-file-copying.c
+
+count: 05-char-counting.c
+	gcc -o ./bin/05-count 05-char-counting.c
 
 clean:
 	$(RM) ./bin/*-*
