@@ -1,10 +1,12 @@
 #include <stdio.h>
 
-/* copy input to output; 2nd version */
+/* Exercise 1-6 and 1-7 */
 int main()
 {
 	int c;
 
-	while ((c = getchar()) != EOF)
-		putchar(c);
+	printf("EOF = %d\n", EOF);
+
+	while (c = getchar() != EOF)
+		printf("c = %d\n", c);
 }
