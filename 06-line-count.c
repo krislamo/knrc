@@ -2,11 +2,20 @@
 
 int main()
 {
-	int c, n1;
+	int c, b, t, n;
 
-	n1 = 0;
-	while ((c = getchar ()) != EOF)
+	b = 0;
+	t = 0;
+	n = 0;
+	while ((c = getchar ()) != EOF) {
+		if (c == ' ')
+			++b;
+		if (c == '\t')
+			++t;
 		if (c == '\n')
-			++n1;
-	printf("%d\n", n1);
+			++n;
+	}
+	printf("blanks   = %d\n", b);
+	printf("tabs     = %d\n", t);
+	printf("newlines = %d\n", n);
 }
