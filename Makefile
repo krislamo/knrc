@@ -1,4 +1,4 @@
-all: hello mathvars c2f input count countlines blanks
+all: hello mathvars c2f input count countlines blanks unambiguous
 
 hello: 01-hello-world.c
 	gcc -o ./bin/01-helloworld 01-hello-world.c
@@ -20,6 +20,9 @@ countlines: 06-line-count.c
 
 blanks: 07-extra-blanks.c
 	gcc -o ./bin/07-extra-blanks 07-extra-blanks.c
+
+unambiguous: 08-unambiguous.c
+	gcc -o ./bin/08-unambiguous 08-unambiguous.c
 
 clean:
 	$(RM) ./bin/*-*
