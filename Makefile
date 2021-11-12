@@ -1,4 +1,4 @@
-all: hello mathvars c2f input count countlines
+all: hello mathvars c2f input count countlines blanks
 
 hello: 01-hello-world.c
 	gcc -o ./bin/01-helloworld 01-hello-world.c
@@ -17,6 +17,9 @@ count: 05-char-counting.c
 
 countlines: 06-line-count.c
 	gcc -o ./bin/06-line-count 06-line-count.c
+
+blanks: 07-extra-blanks.c
+	gcc -o ./bin/07-extra-blanks 07-extra-blanks.c
 
 clean:
 	$(RM) ./bin/*-*
