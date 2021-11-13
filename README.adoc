@@ -152,3 +152,68 @@ https://github.com/krislamo/knrc/commit/588969b09fabab1e91ff4f4b1c37e87fc23cf76b
 https://github.com/krislamo/knrc/blob/588969b09fabab1e91ff4f4b1c37e87fc23cf76b/02-vars-and-math.c[(Source)]
 
 Move some numbers around to reverse the table.
+
+09-word-count.c
+~~~~~~~~~~~~~~~~
+https://github.com/krislamo/knrc/commit/d064db2b171e3da74fd5082ae29456f64caeafeb[(Diff)]
+https://github.com/krislamo/knrc/blob/d064db2b171e3da74fd5082ae29456f64caeafeb/09-word-count.c[(Source)]
+
+Textbook example of counting lines, words, and characters from input.
+
+Exercise 1-11: test the word count program
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+No input:
+
+----
+$ ./bin/09-word-count
+0 0 0
+$
+----
+
+Just 3 newlines:
+
+----
+$ ./bin/09-word-count
+
+
+
+3 0 3
+$
+----
+
+Just 3 tabs:
+
+----
+$ ./bin/09-word-count
+                        0 0 3
+$
+----
+
+Just 3 spaces:
+
+----
+$ ./bin/09-word-count
+   0 0 3
+$
+----
+
+Just a single word per line:
+
+----
+$ ./bin/09-word-count
+one
+word
+per
+line
+4 4 18
+$
+----
+
+Three blanks before and after:
+
+----
+$ ./bin/09-word-count
+   three blanks before/after   0 3 31
+$
+----
