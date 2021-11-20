@@ -6,11 +6,10 @@
 
 int main()
 {
-
-	int c, i, j, state, count;
+	int c, i, j, state, count, top;
 	int wordl[100];
 
-	count = state = OUT;
+	count = state = top = OUT;
 	for(i = 0; i < 100; ++i)
 		wordl[i] = 0;
 
@@ -34,13 +33,23 @@ int main()
 	else if (count >= 100)
 		printf(MAXERROR, count);
 
+	for (i = 0; i < 100; ++i)
+		if (wordl[i] > top)
+			top = wordl[i];
+
 	printf("\n");
-	for (i = 0; i < 100; ++i) {
-		if (wordl[i] > 0) {
-			printf("%2d | ", i);
-			for (j = 0; j < wordl[i]; ++j)
-				printf("#");
-			printf("\n");
+	for (i = 0; i < 100; ++i)
+		if (wordl[i] > 0)
+			printf("%2d ", i);
+
+	printf("\n");
+	for (i = 1; i <= top; ++i) {
+		for (j = 0; j < 100; ++j) {
+			if (wordl[j] >= i)
+				printf(" # ");
+			else if (wordl[j] > 0)
+				printf("   ");
 		}
+		printf("\n");
 	}
 }
