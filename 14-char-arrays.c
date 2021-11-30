@@ -9,15 +9,23 @@ main()
 {
 	int len;
 	int max;
+	int c;
 	char line[MAXLINE];
 	char longest[MAXLINE];
 
 	max = 0;
-	while((len = getline(line, MAXLINE)) > 0)
+	while((len = getline(line, MAXLINE)) > 0) {
+		if (line[len-1] != '\n') {
+			while ((c=getchar())!=EOF && c!='\n')
+				++len;
+			if (c == '\n')
+				++len;
+		}
 		if (len > max) {
 			max = len;
 			copy(longest, line);
 		}
+	}
 	if (max > 0)
 		printf("%s", longest);
 	return 0;
