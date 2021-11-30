@@ -1,5 +1,6 @@
 #include <stdio.h>
 #define MAXLINE 1000 /* maximum input line size */
+#define MINLINE 81
 
 int getline(char line[], int maxline);
 void copy(char to[], char from[]);
@@ -21,13 +22,9 @@ main()
 			if (c == '\n')
 				++len;
 		}
-		if (len > max) {
-			max = len;
-			copy(longest, line);
-		}
+		if (len >= MINLINE)
+			printf("%s", line);
 	}
-	if (max > 0)
-		printf("%s", longest);
 	return 0;
 }
 
