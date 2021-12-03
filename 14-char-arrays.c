@@ -1,10 +1,11 @@
 #include <stdio.h>
 #define MAXLINE 1000 /* maximum input line size */
-#define MINLINE 81
+#define MINLINE 0
 
 int getline(char line[], int maxline);
 void copy(char to[], char from[]);
 void trim(char line[], int len);
+void reverse(char to[], char from[], int len);
 
 /* print longest input line */
 main()
@@ -13,7 +14,7 @@ main()
 	int max;
 	int c;
 	char line[MAXLINE];
-	char longest[MAXLINE];
+	char enil[MAXLINE];
 
 	max = 0;
 	while((len = getline(line, MAXLINE)) > 0) {
@@ -24,8 +25,8 @@ main()
 				++len;
 		}
 		if (len >= MINLINE) {
-			trim(line, len);
-			printf("%s", line);
+			reverse(enil, line, len);
+			printf("%s", enil);
 		}
 	}
 	return 0;
@@ -66,4 +67,15 @@ void trim(char s[], int len)
 			s[i] = '\0';
 		else
 			return;
+}
+
+void reverse(char to[], char from[], int len)
+{
+	int i;
+
+	i = 0;
+	while ((to[i] = from[len-1]) != '\0') {
+		++i;
+		--len;
+	}
 }
